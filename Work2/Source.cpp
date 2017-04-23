@@ -2,17 +2,16 @@
 #include<conio.h>
 
 void main() {
-	printf("Nhap lan luot a va b\n");
-	float a, b = 0;
-	scanf("%f%f", &a, &b);
-	if (a == 0 && b == 0) {
-		printf("Phuong trinh co vo so nghiem");
+	int n,x;
+	float t;
+	printf("Nhap n\n");
+	scanf("%d", &n);
+	printf("Nhap x\n");
+	scanf("%d", &x);
+	t = 0;
+	for (int i = 1; i <= n; i++) {
+		t += float(x) / i;
 	}
-	else if (a == 0 && b != 0) {
-		printf("Phuong trinh vo nghiem");
-	}
-	else {
-		printf("Phuong trinh co nghiem %f", -b / a);
-	}
+	printf("x + x/2 + x/3 +...+ x/N = %f", t);
 	getch();
 }

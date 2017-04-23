@@ -2,24 +2,23 @@
 #include<conio.h>
 
 void main() {
-	printf("Nhap a b c\n");
-	float a, b, c, delta;
-	scanf("%f%f%f", &a, &b, &c);
-	if (a != 0) {
-		delta = pow(b, 2) - 4 * a*c;
-		if (delta < 0) {
-			printf("Phuong trinh vo nghiem");
-		}
-		else if (delta == 0) {
-			printf("Phuong trinh co nghiem x=%f", -1 * b / (2 * a));
-		}
-		else
-		{
-			printf("Phuong trinh co nghiem x1=%f ; x2=%f", (-1 * b + pow(delta, 0.5)) / (2 * a), ((-1 * b - pow(delta, 0.5) )/ (2 * a)));
-		}
+	int n;
+	float t;
+	printf("Nhap n\n");
+	scanf("%d", &n);
+	t = 0;
+	for (int i = 1, dau = 1; i <= n; i++, dau = -dau) {
+		t += dau*(1.0 / i);
 	}
-	else {
-		printf("%.2fx^2+%.2fx+%.2f=0 khong la phuong trinh bac 2", a, b, c);
+	printf("1 - 1/2 + 1/3 - 1/4 +...1/N = %f\n", t);
+	t = 0;
+	for (int i = 2; i <= n - 1; i += 2) {
+		t += i;
 	}
+	printf("2 + 4 + 6 + ... + N-1 = %.0f\n", t);
+	for (int i = 1; i <= n; i++) {
+		t += pow(i,2);
+	}
+	printf("1 + 2^2 + 3^2 + ... + N^2 = %.0f\n", t);
 	getch();
 }
