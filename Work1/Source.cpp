@@ -1,19 +1,39 @@
 #include<iostream>
 #include<conio.h>
+#include<ctime>
 
+void input(int A[], int n) {
+	for (int i = 0; i < n; i++) {
+		printf("\nA[%d]= ", i);
+		scanf("%d", &A[i]);
+	}
+}
+void output(int A[], int n) {
+	for (int i = 0; i < n; i++)
+		printf("%4d", A[i]);
+}
+void Rando(int A[], int n) {
+	srand(time(0));
+	for (int i = 0; i < n; i++)
+	{
+		A[i] = rand() %50;
+	}
+}
+int coutNeg(int A[], int n) {
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		if (A[i] < 0)
+			count++;
+	}
+	return count;
+}
 void main() {
-	int n, t;
-	printf("Nhap n\n");
+	int A[100];
+	int n;
 	scanf("%d", &n);
-	t = 0;
-	for (int i = 1; i <= n; i += 2) {
-		t += i;
-	}
-	printf("1 + 3 + 5 + ... + n = %d\n", t);
-	t = 0;
-	for (int i = 1, dau = 1; i <= n; i++, dau = -dau) {
-		t += dau*i;
-	}
-	printf("1 - 2 + 3 - 4 + ... + (-1)^(N+1)N = %d", t);
+	Rando(A, n);
+	output(A, n);
+	printf("\n%d",coutNeg(A, n));
+	
 	getch();
 }

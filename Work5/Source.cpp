@@ -10,7 +10,7 @@ void main() {
 	scanf("%d", &x);
 	t = 0;
 	int k = 1;
-	for (int i = 1; i <= n + 1; i++) {
+	for (int i = 1; i <= n; i++) {
 		t += float(k) / pow(x, i);
 		k *= (i + 1);
 	}
