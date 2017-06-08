@@ -47,7 +47,6 @@ void addADay(Date &now) {
 			leapYear(now.year);
 		}
 	}
-	printf("%d/%d/%d\n", now.day, now.month, now.year);
 	dayOfWeekClamp(now.dayOfWeek);
 }
 void subtractADay(Date &now) {
@@ -62,7 +61,6 @@ void subtractADay(Date &now) {
 		}
 		now.day = MONTHS[now.month-1];
 	}
-	printf("%d/%d/%d\n", now.day, now.month, now.year);
 	dayOfWeekClamp(now.dayOfWeek);
 }
 void process(Date &now, Date d) {
@@ -77,6 +75,14 @@ void process(Date &now, Date d) {
 		}
 	}
 }
+int checkValidate(Date date) {
+	if (date.month > 12 || date.month < 1)
+		return 0;
+	leapYear(date.year);
+	if (date.day<1 || date.day>MONTHS[date.month - 1])
+		return 0;
+	return 1;
+}
 void main() {
 	
 	Date now;
@@ -87,36 +93,41 @@ void main() {
 
 	printf("The seed: %d - %d/%d/%d\n", now.dayOfWeek, now.day, now.month, now.year);
 	Date past;
-	printf("Enter day, month, year: ");
+	printf("Enter day, month, year: \n");
 	scanf("%d", &past.day);
 	scanf("%d", &past.month);
 	scanf("%d", &past.year);
-
-	process(now, past);
-	printf("%d\n", now.dayOfWeek);
-	switch (now.dayOfWeek)
+	if (checkValidate(past) == 1) {
+		process(now, past);
+		printf("%d\n", now.dayOfWeek);
+		switch (now.dayOfWeek)
+		{
+		case 0:
+			printf("Monday");
+			break;
+		case 1:
+			printf("Tuesday");
+			break;
+		case 2:
+			printf("Wednesday");
+			break;
+		case 3:
+			printf("Thursday");
+			break;
+		case 4:
+			printf("Friday");
+			break;
+		case 5:
+			printf("Saturday");
+			break;
+		case 6:
+			printf("Sunday");
+			break;
+		}
+	}
+	else
 	{
-	case 0:
-		printf("Monday");
-		break;
-	case 1:
-		printf("Tuesday");
-		break;
-	case 2:
-		printf("Wednesday");
-		break;
-	case 3:
-		printf("Thursday");
-		break;
-	case 4:
-		printf("Friday");
-		break;
-	case 5:
-		printf("Saturday");
-		break;
-	case 6:
-		printf("Sunday");
-		break;
+		printf("Wrong date!");
 	}
 	getch();
 }
